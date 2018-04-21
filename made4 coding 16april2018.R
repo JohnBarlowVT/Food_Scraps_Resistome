@@ -73,8 +73,7 @@ res_mat2 <- res_mat[,-c(1,5,11,12,16,22,25)]
 rownames(res_mat2) <- res_mat$Name
 
 head(res_mat2)
-
-overview(res_mat2)
+str(res_mat2)
 
 ## loading bacterial data
 
@@ -98,6 +97,8 @@ head(vf_mat2)
 vf2 <- vf_abun[,-1]
 rownames(vf2) <- vf_abun$Name
 
+#made4 has an overview function which gneerates a boxplot, histogram and hierachial tree of the data
+overview(res_mat2)
 
 
 

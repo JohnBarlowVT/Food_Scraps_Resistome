@@ -4,10 +4,9 @@
 
 <head>
 
-<meta charset="utf-8" />
+<meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-
 
 <meta name="author" content="John Barlow" />
 
@@ -17,42 +16,27 @@
 
 <script src="index_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="index_files/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
-<script src="index_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="index_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="index_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="index_files/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+<script src="index_files/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+<script src="index_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <script src="index_files/navigation-1.1/tabsets.js"></script>
+<script src="index_files/navigation-1.1/codefolding.js"></script>
+<link href="index_files/magnific-popup-1.1.0/magnific-popup.css" rel="stylesheet" />
+<script src="index_files/magnific-popup-1.1.0/jquery.magnific-popup.min.js"></script>
+<link href="index_files/clean-0.1/clean.css" rel="stylesheet" />
+<script src="index_files/clean-0.1/clean.js"></script>
 
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
 
+<!-- code folding -->
 
 </head>
 
@@ -72,43 +56,21 @@ img {
   max-width:100%;
   height: auto;
 }
-.tabbed-pane {
-  padding-top: 12px;
-}
-button.code-folding-btn:focus {
-  outline: none;
-}
 </style>
-
-
-
 <div class="container-fluid main-container">
-
-<!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
-
-<!-- code folding -->
+  <div class="row">
+     <div class="col-md-10">
 
 
 
 
-
-
-<div class="fluid-row" id="header">
-
-
-
-<h1 class="title toc-ignore">Food Scraps Resistome Project</h1>
+<div id="header">
+<h1 class="title">Food Scraps Resistome Project</h1>
 <h4 class="author"><em>John Barlow</em></h4>
 <h4 class="date"><em>April 18, 2018</em></h4>
-
 </div>
 
-
+<div id="content">
 <div id="exploring-resistome-metagenomics-with-r-using-made4-package" class="section level3">
 <h3>Exploring resistome metagenomics with R using <em>made4</em> package</h3>
 </div>
@@ -118,9 +80,9 @@ $(document).ready(function () {
 <li>Email: <a href="mailto:john.barlow@uvm.edu">john.barlow@uvm.edu</a></li>
 </ul>
 </div>
-<div id="background" class="section level3">
-<h3>Background</h3>
-<p>We recently collected shotgun metagenomics data from multiple sources on a poultry farm feeding post-consumer food waste to their chickens. The farm collects food waste from various sources (hospital and school cafeterias, nursing homes, restaurants, grocery stores) and feeds the food scraps to chickens. After the chickens feed on the food scraps the waste material enters a composting stream, and the processed compost is used for vermi-culture and the final product is sold commercially.</p>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>We recently collected shotgun metagenomics data from multiple sources on a poultry farm feeding post-consumer food waste to their chickens. The farm collects food waste from various sources (hospital and school cafeterias, nursing homes, restaurants, grocery stores) and feeds the pooled food scraps to chickens. After the chickens feed on the food scraps the waste material enters a composting stream, and the processed compost is used for vermi-culture and the final product is sold commercially.</p>
 <p style="text-align:center;">
 <img src="food%20waste%20metagenome%20workflow.png">
 </p>
@@ -128,35 +90,60 @@ $(document).ready(function () {
 <p>A secondary objective was to explore the associations between the types of microbial genes identified by shotgun metagenomics in the samples collected from this farm.</p>
 <p>A challenge with these data is that there are large numbers of genes (i.e. variables observed) compared to the number of samples (e.g. sample sites), and that we generate separate tables of observed genes from alignment queries to different reference databases. We propose that this is analogous to gene expression data (e.g. microarray data) obtained across different microarray platforms. Further the data contains many “0” observations, where a gene is not observed in a particular sample (graphically explored using the attached R code).</p>
 </div>
-<div id="data-structure" class="section level3">
-<h3>Data structure</h3>
+<div id="data-structure" class="section level2">
+<h2>Data structure</h2>
 <p>The data from the shotgun metagenomics study are 3 separate dataframes, each with x identical columns and a variable number of rows. The columns are the sample sites. The rows represent different gene sequences identified in the samples.</p>
+</div>
 </div>
 
 
-
-
+    </div>
+    <div class="col-md-2">
+      <div id="toc">
+      	<button type="button" class="close">×</button>
+        <ul>
+        <li><a href="#background">Background</a></li>
+        <li><a href="#data-structure">Data structure</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-
-// add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
 $(document).ready(function () {
-  bootstrapStylePandocTables();
+
+  // add bootstrap table styles to pandoc tables
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+
 });
-
-
 </script>
+
+<script>
+$(document).ready(function () {
+ 	    $('#content img')
+ 	  .addClass("image-lb");
+  $('#content').magnificPopup({
+	      type:'image',
+	      closeOnContentClick: false,
+	      delegate: 'img',
+	      gallery: {enabled: false },
+	      image: {
+	        verticalFit: true,
+          titleSrc: 'alt'
+	      }
+ 	    });
+ 	});
+</script>
+
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

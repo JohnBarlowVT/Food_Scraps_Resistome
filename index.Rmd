@@ -3,19 +3,20 @@ title: "Food Scraps Resistome Project"
 author: "John Barlow"
 date: "April 18, 2018"
 output: 
-  html_document:
+  rmdformats::html_clean:
     highlight: espresso
     keep_md: yes
     self_contained: no
-    theme: simplex
+    thumbnails: no
+    
 ---
 
 ###Exploring resistome metagenomics with R using _made4_  package
 ###John Barlow and Korin Eckstrom
 * Email: john.barlow@uvm.edu
 
-###Background
-We recently collected shotgun metagenomics data from multiple sources on a poultry farm feeding post-consumer food waste to their chickens. The farm collects food waste from various sources (hospital and school cafeterias, nursing homes, restaurants, grocery stores) and feeds the food scraps to chickens. After the chickens feed on the food scraps the waste material enters a composting stream, and the processed compost is used for vermi-culture and the final product is sold commercially. 
+##Background
+We recently collected shotgun metagenomics data from multiple sources on a poultry farm feeding post-consumer food waste to their chickens. The farm collects food waste from various sources (hospital and school cafeterias, nursing homes, restaurants, grocery stores) and feeds the pooled food scraps to chickens. After the chickens feed on the food scraps the waste material enters a composting stream, and the processed compost is used for vermi-culture and the final product is sold commercially. 
 
 <p style="text-align:center;"><img src="food waste metagenome workflow.png"></p>
 
@@ -25,7 +26,7 @@ A secondary objective was to explore the associations between the types of micro
 
 A challenge with these data is that there are large numbers of genes (i.e. variables observed) compared to the number of samples (e.g. sample sites), and that we generate separate tables of observed genes from alignment queries to different reference databases. We propose that this is analogous to gene expression data (e.g. microarray data) obtained across different microarray platforms. Further the data contains many "0" observations, where a gene is not observed in a particular sample (graphically explored using the attached R code).
 
-###Data structure
+##Data structure
 
 The data from the shotgun metagenomics study are 3 separate dataframes, each with x identical columns and a variable number of rows. The columns are the sample sites. The rows represent different gene sequences identified in the samples.  
 
