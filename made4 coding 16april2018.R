@@ -40,6 +40,8 @@ install.packages("installr")
 # once your R version is up to date, then on to the preliiminaries of installing made4 and associated packages - ade4 and scatterplot3d appear to install automatically when you install made4
 
 install.packages("made4")
+#install.packages("ggtree") # ggtree not available for most recent version
+install.packages("ape")
 
 ## Korin suggested will need to install made4 as below, not via install.packages(), but install.packages seemed to work for me (although it loaded an older version and to get the most recent version I had to download direct from the made4 bioconductor site
 #source("https://bioconductor.org/biocLite.R")
@@ -75,16 +77,14 @@ rownames(res_mat2) <- res_mat$Name
 head(res_mat2)
 str(res_mat2)
 
-## loading bacterial data
+## loading bacterial taxonomy data
+# same code as above compiled for bac data
 
 #mat <- as.data.frame(bac_mat1)
 bac_mat <- read.csv("bac_mat_abun.csv")
 bac_mat2 <- bac_mat[,-c(1,5,11,12,16,22,25)]
 rownames(bac_mat2) <- bac_mat$Name
-head(bac_mat)
-head(bac_mat2)
 
-## need to force name column as rownames of the matrix to get the labels into the test
 bac_mat2 <- b_mat2[,-1]
 rownames(bac_mat2) <- b_mat$Name
 
@@ -97,9 +97,12 @@ head(vf_mat2)
 vf2 <- vf_abun[,-1]
 rownames(vf2) <- vf_abun$Name
 
-#made4 has an overview function which gneerates a boxplot, histogram and hierachial tree of the data
+#made4 has an overview function which generates a boxplot, histogram and hierachial tree of the data
 overview(res_mat2)
 
+#the histogram is compiled across all "sites" - big skew - lots of "0" values
+#might want to see these data by site in a latice
+# the imported files are data frames
 
 
 c <- cia(bac_mat2, res_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
