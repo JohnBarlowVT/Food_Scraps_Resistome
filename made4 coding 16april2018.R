@@ -53,6 +53,11 @@ getwd()
 
 #load made4 - associated packages ade4, RColorBrewer, gplots, and scatterplot3d load automatically when you load made4
 library(made4)
+
+# also loaded other packages for graphical exploration of the data sets
+library (reshape2)
+library(tidyr)
+library(dplyr)
 library (ggplot2)
 library (ggthemes)
 library (patchwork)
@@ -69,13 +74,18 @@ none <- lapply(res_mat, function(x) all(x == 0))
 which(none == "TRUE")
 
 ## removing them
+
 res_mat2 <- res_mat[,-c(1,5,11,12,16,22,25)]
 
+
 ## need to force name column as rownames of the matrix to get the labels into the test
+rownames(res_mat_all) <- res_mat$Name
 rownames(res_mat2) <- res_mat$Name
 
 head(res_mat2)
 str(res_mat2)
+head(res_mat_all)
+str(res_mat_all)
 
 ## loading bacterial taxonomy data
 # same code as above compiled for bac data
@@ -100,11 +110,26 @@ rownames(vf2) <- vf_abun$Name
 #made4 has an overview function which generates a boxplot, histogram and hierachial tree of the data
 overview(res_mat2)
 
-#the histogram is compiled across all "sites" - big skew - lots of "0" values
-#might want to see these data by site in a latice
+# the histogram is compiled across all "sites" - big skew - lots of "0" values
+# might want to see these data by site in a lattice
+# I explored the overview function, it does not seem possible to generate separate histograms by site inside this package
+# so generate in ggplot2
 # the imported files are data frames
+res_mat_all <- res_mat[,-c(1)]
+res_mat_all[] <- lapply(res_mat_all[], as.numeric)
 
+.<-gather(res_mat_all, key="Site", value="Abundance")
+head(.)
+str(.)
+# note this did not generate a column with the gene names - need to append this code perhaps eventually, but really not important to see the distribution on the frequency of gene counts
+# now able to do a bar plot with this
 
+g1<- ggplot(data=., mapping=aes(x=Abundance)) + geom_histogram()+ theme_classic()
+
+g1+facet_wrap(~Site, dir="v", nrow=2)
+            
+
+# actually using made4
 c <- cia(bac_mat2, res_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
 c$coinertia$RV
 #0.445
