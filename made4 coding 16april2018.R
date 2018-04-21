@@ -73,6 +73,9 @@ res_mat2 <- res_mat[,-c(1,5,11,12,16,22,25)]
 rownames(res_mat2) <- res_mat$Name
 
 head(res_mat2)
+
+overview(res_mat2)
+
 ## loading bacterial data
 
 #mat <- as.data.frame(bac_mat1)
