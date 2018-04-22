@@ -61,10 +61,19 @@ library(dplyr)
 library (ggplot2)
 library (ggthemes)
 library (patchwork)
+library(readr)
 
 #### code from Korin - modified for graphical data exploration
 #### co-inertia analysis using the made4 package
 ### loading ARGs file
+data_res_git<- "https://github.com/JohnBarlowVT/Food_Scraps_Resistome/blob/master/res_mat_abun.csv"
+
+str(data_res_git)
+
+res_mat_test <- read_csv("https://github.com/JohnBarlowVT/Food_Scraps_Resistome/blob/master/res_mat2.csv", col_names = TRUE)
+head(res_mat_test)
+
+data <- read.table (file-"https://github.com/JohnBarlowVT/Food_Scraps_Resistome/blob/master/res_mat_abun.csv", row.names = 1, header=TRUE, sep=",",stringsAsFactors = FALSE)
 
 res_mat <- read.csv("res_mat_abun2.csv")
 
@@ -82,6 +91,7 @@ res_mat2 <- res_mat[,-c(1,5,11,12,16,22,25)]
 rownames(res_mat_all) <- res_mat$Name
 rownames(res_mat2) <- res_mat$Name
 
+write.csv (res_mat2, file="res_mat2.csv")
 head(res_mat2)
 str(res_mat2)
 head(res_mat_all)
@@ -107,6 +117,7 @@ head(vf_mat2)
 vf2 <- vf_abun[,-1]
 rownames(vf2) <- vf_abun$Name
 
+write.csv(
 #made4 has an overview function which generates a boxplot, histogram and hierachial tree of the data
 overview(res_mat2)
 
@@ -122,12 +133,14 @@ res_mat_all[] <- lapply(res_mat_all[], as.numeric)
 head(.)
 str(.)
 # note this did not generate a column with the gene names - need to append this code perhaps eventually, but really not important to see the distribution on the frequency of gene counts
-# now able to do a bar plot with this
+# now able to do a hsitogram on gene frequency by sites 
 
-g1<- ggplot(data=., mapping=aes(x=Abundance,fill=I("tomato"), color=I("black"))) + geom_histogram()+ theme_light()
+g1<- ggplot(data=., mapping=aes(x=Abundance,fill=I("tomato"), color=I("black"))) + geom_histogram()+ theme_minimal()
 
 g2<- g1+facet_wrap(~Site, dir="v", nrow=2)
-        
+#ggsave(filename="AGRhisto.jpg", plot=g2, device=jpeg) #jpeg not working      
+
+ggsave(filename="AGRhisto.pdf", plot=g2, device=pdf, width=40, height=20, units="cm", dpi=300)
 
 # actually using made4
 c <- cia(bac_mat2, res_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
