@@ -23,11 +23,18 @@
 <script src="index_files/navigation-1.1/codefolding.js"></script>
 <link href="index_files/magnific-popup-1.1.0/magnific-popup.css" rel="stylesheet" />
 <script src="index_files/magnific-popup-1.1.0/jquery.magnific-popup.min.js"></script>
-<link href="index_files/clean-0.1/clean.css" rel="stylesheet" />
-<script src="index_files/clean-0.1/clean.js"></script>
+<link href="index_files/readthedown-0.1/readthedown.css" rel="stylesheet" />
+<script src="index_files/readthedown-0.1/readthedown.js"></script>
 
 
 
+
+</head>
+
+<body>
+
+
+<div id="content" data-toggle="wy-nav-shift">
 
 <!-- tabsets -->
 <script>
@@ -38,39 +45,29 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
-</style>
-<div class="container-fluid main-container">
-  <div class="row">
-     <div class="col-md-10">
-
-
+<nav id="nav-top" role="navigation" aria-label="top navigation">
+    <a role="button" href="#" data-toggle="wy-nav-top"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+</nav>
 
 
 <div id="header">
 <h1 class="title">Food Scraps Resistome Project</h1>
-<h4 class="author"><em>John Barlow</em></h4>
-<h4 class="date"><em>April 18, 2018</em></h4>
 </div>
 
-<div id="content">
+
+<div id="table-of-contents">
+    <h2><a href="#content">Food Scraps Resistome Project</a></h2>
+    <div id="text-table-of-contents">
+      <ul>
+      <li><a href="#background">Background</a></li>
+      <li><a href="#data-structure">Data structure</a></li>
+      <li><a href="#data-files">Data Files</a></li>
+      <li><a href="#code">Code</a></li>
+      </ul>
+    </div>
+</div>
+
+<div id="main">
 <div id="exploring-resistome-metagenomics-with-r-using-made4-package" class="section level3">
 <h3>Exploring resistome metagenomics with R using <em>made4</em> package</h3>
 </div>
@@ -100,51 +97,29 @@ img {
 </div>
 <div id="data-files" class="section level2">
 <h2>Data Files</h2>
-<p>here they are</p>
+<p>there are 3 data files needed for the demo</p>
+<p>ARG data <a href="res_mat_abun.csv" class="uri">res_mat_abun.csv</a></p>
+<p>Bacterial Taxa data <a href="bac_mat_abun.csv" class="uri">bac_mat_abun.csv</a></p>
+<p>Virulence gene data <a href="vf_mat_abun.csv" class="uri">vf_mat_abun.csv</a></p>
+</div>
+<div id="code" class="section level2">
+<h2>Code</h2>
 </div>
 </div>
 
 
-    </div>
-    <div class="col-md-2">
-      <div id="toc">
-      	<button type="button" class="close">×</button>
-        <ul>
-        <li><a href="#background">Background</a></li>
-        <li><a href="#data-structure">Data structure</a></li>
-        <li><a href="#data-files">Data Files</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
 </div>
+
+<div id="postamble" data-toggle="wy-nav-shift" class="status">
+<p class="author"><span class="glyphicon glyphicon-user"></span> John Barlow</p>
+<p class="date"><span class="glyphicon glyphicon-calendar"></span> April 18, 2018</p>
+</div>
+
 
 <script>
 $(document).ready(function () {
-
-  // add bootstrap table styles to pandoc tables
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-
-});
+ 	  });
 </script>
-
-<script>
-$(document).ready(function () {
- 	    $('#content img')
- 	  .addClass("image-lb");
-  $('#content').magnificPopup({
-	      type:'image',
-	      closeOnContentClick: false,
-	      delegate: 'img',
-	      gallery: {enabled: false },
-	      image: {
-	        verticalFit: true,
-          titleSrc: 'alt'
-	      }
- 	    });
- 	});
-</script>
-
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

@@ -3,12 +3,12 @@ title: "Food Scraps Resistome Project"
 author: "John Barlow"
 date: "April 18, 2018"
 output: 
-  rmdformats::html_clean:
+  rmdformats::readthedown:
     highlight: espresso
     keep_md: yes
     self_contained: no
     thumbnails: no
-    #readthedown rmdformat alternative
+    #readthedown rmdformat alternative html_clean
 ---
 
 ###Exploring resistome metagenomics with R using _made4_  package
@@ -35,6 +35,16 @@ The data from the shotgun metagenomics study are 3 separate dataframes, each wit
  
 ##Data Files
 
-here they are
+there are 3 data files needed for the demo
+
+ARG data [res_mat_abun.csv ](res_mat_abun.csv)
+
+Bacterial Taxa data [bac_mat_abun.csv ](bac_mat_abun.csv)
+
+Virulence gene data [vf_mat_abun.csv ](vf_mat_abun.csv)
+
+##Code
+
+
 
 
