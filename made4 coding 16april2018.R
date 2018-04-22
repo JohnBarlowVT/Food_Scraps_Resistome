@@ -65,42 +65,30 @@ library(readr)
 
 #### code from Korin - modified for graphical data exploration
 #### co-inertia analysis using the made4 package
-### loading ARGs file
-data_res_git<- "https://github.com/JohnBarlowVT/Food_Scraps_Resistome/blob/master/res_mat_abun.csv"
+### loading ARG data file
 
-str(data_res_git)
+res_mat <- read.csv("res_mat_abun.csv")
 
-res_mat_test <- read_csv("https://github.com/JohnBarlowVT/Food_Scraps_Resistome/blob/master/res_mat2.csv", col_names = TRUE)
-head(res_mat_test)
+### analysis won't run if there are instances where some of the samples have no data, i.e. the HOSP, WOCA, and SWCA for ARGs all have zero abundance for ARGs, this identifies those instances to be removed later
 
-data <- read.table (file-"https://github.com/JohnBarlowVT/Food_Scraps_Resistome/blob/master/res_mat_abun.csv", row.names = 1, header=TRUE, sep=",",stringsAsFactors = FALSE)
-
-res_mat <- read.csv("res_mat_abun2.csv")
-
-### analysis won't run if there are instances where some of the samples have no data, i.e. the HOSP, 
-### WOCA, and SWCA for ARGs all have zero abundance for ARGs, this identifies those instances to be removed later
 none <- lapply(res_mat, function(x) all(x == 0))
 which(none == "TRUE")
 
-## removing them
+## removing sites with no observations for ARGs
 
 res_mat2 <- res_mat[,-c(1,5,11,12,16,22,25)]
 
 
 ## need to force name column as rownames of the matrix to get the labels into the test
-rownames(res_mat_all) <- res_mat$Name
 rownames(res_mat2) <- res_mat$Name
 
-write.csv (res_mat2, file="res_mat2.csv")
 head(res_mat2)
 str(res_mat2)
-head(res_mat_all)
-str(res_mat_all)
+
 
 ## loading bacterial taxonomy data
 # same code as above compiled for bac data
 
-#mat <- as.data.frame(bac_mat1)
 bac_mat <- read.csv("bac_mat_abun.csv")
 bac_mat2 <- bac_mat[,-c(1,5,11,12,16,22,25)]
 rownames(bac_mat2) <- bac_mat$Name
@@ -117,8 +105,8 @@ head(vf_mat2)
 vf2 <- vf_abun[,-1]
 rownames(vf2) <- vf_abun$Name
 
-write.csv(
-#made4 has an overview function which generates a boxplot, histogram and hierachial tree of the data
+
+#made4 has an overview function which generates a boxplot, histogram and hierachial tree of the data - demonstrated
 overview(res_mat2)
 
 # the histogram is compiled across all "sites" - big skew - lots of "0" values
@@ -133,14 +121,12 @@ res_mat_all[] <- lapply(res_mat_all[], as.numeric)
 head(.)
 str(.)
 # note this did not generate a column with the gene names - need to append this code perhaps eventually, but really not important to see the distribution on the frequency of gene counts
-# now able to do a hsitogram on gene frequency by sites 
+# histogram on gene frequency by sites in lattice 
 
 g1<- ggplot(data=., mapping=aes(x=Abundance,fill=I("tomato"), color=I("black"))) + geom_histogram()+ theme_minimal()
-
 g2<- g1+facet_wrap(~Site, dir="v", nrow=2)
-#ggsave(filename="AGRhisto.jpg", plot=g2, device=jpeg) #jpeg not working      
-
-ggsave(filename="AGRhisto.pdf", plot=g2, device=pdf, width=40, height=20, units="cm", dpi=300)
+#ggsave(filename="AGRhisto.jpg", plot=g2, device=jpeg) #jpeg not working
+ggsave(filename="AGRhisto.pdf", plot=g2, device=pdf, width=40, height=20, units="cm", dpi=300) #posted to project web page
 
 # actually using made4
 c <- cia(bac_mat2, res_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
