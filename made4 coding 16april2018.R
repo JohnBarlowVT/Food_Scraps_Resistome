@@ -124,10 +124,10 @@ str(.)
 # note this did not generate a column with the gene names - need to append this code perhaps eventually, but really not important to see the distribution on the frequency of gene counts
 # now able to do a bar plot with this
 
-g1<- ggplot(data=., mapping=aes(x=Abundance)) + geom_histogram()+ theme_classic()
+g1<- ggplot(data=., mapping=aes(x=Abundance,fill=I("tomato"), color=I("black"))) + geom_histogram()+ theme_light()
 
-g1+facet_wrap(~Site, dir="v", nrow=2)
-            
+g2<- g1+facet_wrap(~Site, dir="v", nrow=2)
+        
 
 # actually using made4
 c <- cia(bac_mat2, res_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
