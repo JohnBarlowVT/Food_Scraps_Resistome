@@ -8,7 +8,7 @@ output:
     keep_md: yes
     self_contained: no
     thumbnails: no
-    
+    #readthedown rmdformat alternative
 ---
 
 ###Exploring resistome metagenomics with R using _made4_  package
@@ -28,8 +28,13 @@ A challenge with these data is that there are large numbers of genes (i.e. varia
 
 ##Data structure
 
-The data from the shotgun metagenomics study are 3 separate dataframes, each with 20 identical columns representing the collection sites and a variable number of rows representing the observed genes. At this time we are treating the replicates of metagenomic runs from each site separately (although we know they are not independent), thus there are 26 sites (13 sites with 2 metagenomic runs per site). 
+The data from the shotgun metagenomics study are 3 separate dataframes, each with 20 identical columns representing the collection sites and a variable number of rows representing the observed genes. At this time we are treating the replicates of metagenomic runs from each site separately (although we know they are not independent), thus there are 26 sites (13 sites with 2 metagenomic runs per site). There were 3 sites where we found no ARGs and these are later removed for co-inertia analysis between the data.frames. 
 
+![ARGhisto](AGRhisto.jpg)
 
+ 
+##Data Files
+
+here they are
 
 
