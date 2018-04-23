@@ -40,21 +40,22 @@ install.packages("installr")
 # once your R version is up to date, then on to the preliiminaries of installing made4 and associated packages - ade4 and scatterplot3d appear to install automatically when you install made4
 
 install.packages("made4")
+# ggtree and ape are a couple phylogenetics packages I have been exploring for our work, # not using in this exercise for now
 #install.packages("ggtree") # ggtree not available for most recent version
-install.packages("ape")
+# install.packages("ape") 
 
-## Korin suggested will need to install made4 as below, not via install.packages(), but install.packages seemed to work for me (although it loaded an older version and to get the most recent version I had to download direct from the made4 bioconductor site
+## Korin suggests one needs to install made4 as below from the biocLite source, not via install.packages(), but install.packages seemed to work for me (although it loaded an older version and to get the most recent version I had to download direct from the made4 bioconductor site
 #source("https://bioconductor.org/biocLite.R")
 #biocLite("made4")
 #biocLite("BiocUpgrade")
 
-setwd("C:/Users/jbarlow/Documents/Computational Biology/Food_Scraps/Food_Scraps_Resistome") 
+setwd("C:/Users/jbarlow/Documents/Computational Biology/Food_Scraps/Food_Scraps_Resistome") #modify for your particular wd 
 getwd()
 
 #load made4 - associated packages ade4, RColorBrewer, gplots, and scatterplot3d load automatically when you load made4
 library(made4)
 
-# also loaded other packages for graphical exploration of the data sets
+# I also loaded other packages for graphical exploration of the data sets to compare some graphics to overview graphics created by made4 overview function
 library (reshape2)
 library(tidyr)
 library(dplyr)
@@ -63,13 +64,12 @@ library (ggthemes)
 library (patchwork)
 library(readr)
 
-#### code from Korin - modified for graphical data exploration
-#### co-inertia analysis using the made4 package
+#### co-inertia analysis (cia) using the made4 package
 ### loading ARG data file
 
 res_mat <- read.csv("res_mat_abun.csv")
 
-### analysis won't run if there are instances where some of the samples have no data, i.e. the HOSP, WOCA, and SWCA for ARGs all have zero abundance for ARGs, this identifies those instances to be removed later
+### cia analysis won't run if there are instances where some of the samples have no data, i.e. the HOSP, WOCA, and SWCA for ARGs all have zero abundance for ARGs (see , the following code identifies those instances to be removed 
 
 none <- lapply(res_mat, function(x) all(x == 0))
 which(none == "TRUE")
@@ -154,6 +154,12 @@ c4 <- cia(vf_mat, bac_mat, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
 c4$coinertia$RV
 #0.19
 
-
-
-
+#testing other functions
+res.coa<-ord(res_mat2)
+res.coa
+plot(res.coa)
+plotgenes(res.coa)
+topgenes(res.coa, axis=1, n=5)
+a<-topgenes(res.coa, end="neg")
+b<-topgenes(res.coa, end="pos")
+comparelists(a,b)
