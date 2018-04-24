@@ -75,13 +75,21 @@ load made4 -  associated packages ade4, RColorBrewer, gplots, and scatterplot3d 
 ```{r eval=FALSE}
 library(made4)
 ```
+
+####Data structure constraints for made4:
+
+1. with some functions for testing relationships between 2 data sets is that the datasets must contain the same samples ("either the rows or the columns of a matrix must be matchable"). 
+
 read in the 3 data files
 ```{r eval=FALSE}
 res_mat <- read.csv("res_mat_abun.csv")
 bac_mat <- read.csv("bac_mat_abun.csv")
 vf_mat <- read.csv("vf_mat_abun.csv")
 ```
-check the structure of the data files - made4 needs the abundance values to be numeric, and for some reason a number of values are as integers in our csv files - so code we figured out to correct this
+
+2. made4 needs the abundance values to be numeric, and for some reason a number of values are as integers in our csv files - so code we figured out to correct this
+
+check the structure of the data files
 ```{r eval=FALSE}
 str(res_mat)
 #so clean thus up by setting all values to numeric, except not the gene names
@@ -91,7 +99,8 @@ rownames(res_mat_all) <- res_mat$Name
 head(res_mat_all)
 str(res_mat_all)
 ```
-also, a number of functions throw an error if any sites have all 0 values for the abundance of observed genes e.g. the HOSP, WOCA, and SWCA for ARGs all have zero abundance for ARGs (see [Figure 3 ARG freq by site.html](fig3_arg_freq_by_site.html)).
+
+3. also, a number of functions throw an error if any sites have all 0 values for the abundance of observed genes e.g. the HOSP, WOCA, and SWCA for ARGs all have zero abundance for ARGs (see [Figure 3 ARG freq by site.html](fig3_arg_freq_by_site.html)).
 
 here is the code Korin figured out to resolve this issue
 ```{r eval=FALSE}
@@ -119,7 +128,10 @@ vf_mat2 <- vf_mat_all[,-c(4,10,11,15,21,24)]
 head(vf_mat2)
 str(vf_mat2)
 ```
-data files now ready to use
+
+####data files now ready to use
+
+## _made4_ functions
 
 made4 has an overview function which generates a boxplot, histogram and hierachial tree of the data 
 ```{r eval=FALSE}
