@@ -18,6 +18,7 @@ I used the following resources to learn about using made4
 1. Bioconductor made4 
 
 [https://www.bioconductor.org/packages/release/bioc/html/made4.html](https://www.bioconductor.org/packages/release/bioc/html/made4.html)
+
 [http://www.bioconductor.org/packages//2.7/bioc/vignettes/made4/inst/doc/introduction.pdf](http://www.bioconductor.org/packages//2.7/bioc/vignettes/made4/inst/doc/introduction.pdf)
 
 2. Culhane AC, Thioulouse J, Perriere G, Higgins DG.(2005) MADE4: an R package for multivariate analysis of gene expression data. Bioinformatics 21(11):2789-90.
@@ -101,7 +102,7 @@ head(res_mat_all)
 str(res_mat_all)
 ```
 
-repeat for the other 2 files
+repeat for the other 2 files, removing the same 6 columns from each file
 ```{r eval=FALSE}
 bac_mat_all <- bac_mat[,-c(1)]
 bac_mat_all[] <- lapply(bac_mat_all[], as.numeric)

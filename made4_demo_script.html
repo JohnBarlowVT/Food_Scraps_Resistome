@@ -158,7 +158,8 @@ $(document).ready(function () {
 <ol style="list-style-type: decimal">
 <li>Bioconductor made4</li>
 </ol>
-<p><a href="https://www.bioconductor.org/packages/release/bioc/html/made4.html" class="uri">https://www.bioconductor.org/packages/release/bioc/html/made4.html</a> <a href="http://www.bioconductor.org/packages//2.7/bioc/vignettes/made4/inst/doc/introduction.pdf" class="uri">http://www.bioconductor.org/packages//2.7/bioc/vignettes/made4/inst/doc/introduction.pdf</a></p>
+<p><a href="https://www.bioconductor.org/packages/release/bioc/html/made4.html" class="uri">https://www.bioconductor.org/packages/release/bioc/html/made4.html</a></p>
+<p><a href="http://www.bioconductor.org/packages//2.7/bioc/vignettes/made4/inst/doc/introduction.pdf" class="uri">http://www.bioconductor.org/packages//2.7/bioc/vignettes/made4/inst/doc/introduction.pdf</a></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Culhane AC, Thioulouse J, Perriere G, Higgins DG.(2005) MADE4: an R package for multivariate analysis of gene expression data. Bioinformatics 21(11):2789-90. note the introduction and reference manual can be opened from within R</li>
 </ol>
@@ -211,7 +212,7 @@ res_mat_all[] &lt;-<span class="st"> </span><span class="kw">lapply</span>(res_m
 res_mat2 &lt;-<span class="st"> </span>res_mat_all[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">15</span>,<span class="dv">21</span>,<span class="dv">24</span>)]
 <span class="kw">head</span>(res_mat_all)
 <span class="kw">str</span>(res_mat_all)</code></pre></div>
-<p>repeat for the other 2 files</p>
+<p>repeat for the other 2 files, removing the same 6 columns from each file</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bac_mat_all &lt;-<span class="st"> </span>bac_mat[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>)]
 bac_mat_all[] &lt;-<span class="st"> </span><span class="kw">lapply</span>(bac_mat_all[], as.numeric)
 <span class="kw">rownames</span>(bac_mat_all) &lt;-<span class="st"> </span>bac_mat<span class="op">$</span>Name

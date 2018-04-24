@@ -55,5 +55,3 @@ str(vf_mat2)
 #data ready to use
 #made4 has an overview function which generates a boxplot, histogram and hierachial tree of the data 
 overview(res_mat_all)
-#however this function (and other functions such as cia) throws an error if any sites have all 0 values for the abundance of observed genes e.g. the HOSP, WOCA, and SWCA for ARGs all have zero abundance for ARGs
-# here is the code Korin figured out to resolve this issue
