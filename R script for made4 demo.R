@@ -23,8 +23,8 @@ str(res_mat)
 str(bac_mat)
 str(vf_mat)
 
-#so clean thus up by setting all values to numeric, except not the gene names and set the row names in the data frame as the gene names
-res_mat_all <- res_mat[,-c(1)]
+#so clean this up by setting all values to numeric, except not the gene names and set the row names in the data frame as the gene names
+res_mat_all <- res_mat[ ,-c(1)]
 res_mat_all[] <- lapply(res_mat_all[], as.numeric)
 rownames(res_mat_all) <- res_mat$Name
 
