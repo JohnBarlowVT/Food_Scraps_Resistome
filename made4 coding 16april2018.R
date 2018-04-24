@@ -69,6 +69,9 @@ library(readr)
 
 res_mat <- read.csv("res_mat_abun.csv")
 
+head(res_mat)
+str(res_mat)
+
 ### cia analysis won't run if there are instances where some of the samples have no data, i.e. the HOSP, WOCA, and SWCA for ARGs all have zero abundance for ARGs (see , the following code identifies those instances to be removed 
 
 none <- lapply(res_mat, function(x) all(x == 0))
@@ -77,7 +80,7 @@ which(none == "TRUE")
 ## removing sites with no observations for ARGs
 
 res_mat2 <- res_mat[,-c(1,5,11,12,16,22,25)]
-
+res_mat2[] <- lapply(res_mat2[], as.numeric)
 
 ## need to force name column as rownames of the matrix to get the labels into the test
 rownames(res_mat2) <- res_mat$Name
@@ -116,6 +119,9 @@ overview(res_mat2)
 # the imported files are data frames
 res_mat_all <- res_mat[,-c(1)]
 res_mat_all[] <- lapply(res_mat_all[], as.numeric)
+rownames(res_mat_all) <- res_mat$Name
+head(res_mat_all)
+str(res_mat_all)
 
 .<-gather(res_mat_all, key="Site", value="Abundance")
 head(.)
