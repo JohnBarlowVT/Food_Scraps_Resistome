@@ -49,6 +49,8 @@ Virulence gene data [vf_mat_abun.csv ](vf_mat_abun.csv)
 
 ##Code
 
+[made4 demo script.html](made4_demo_script.html)
+
 The _made4_ function __overview()__ will generate a boxplot, histogram, and dendrogram of the data elements. This seems to be good for a quick look at the data. There are few arguments in the functure to enhance the graphics display. Here is the output from running overview on the cleaned ARG abundance data file "res_mat2"
 ![ARG overview](ARGoverviewRplot.png)
 
