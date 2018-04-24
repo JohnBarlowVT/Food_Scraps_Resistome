@@ -34,8 +34,8 @@ none <- lapply(res_mat_all, function(x) all(x == 0))
 which(none == "TRUE")
 # remove those 6 columns
 res_mat2 <- res_mat_all[,-c(4,10,11,15,21,24)]
-head(res_mat_all)
-str(res_mat_all)
+head(res_mat2)
+str(res_mat2)
 
 #repeat for the other 2 files
 bac_mat_all <- bac_mat[,-c(1)]
@@ -54,4 +54,42 @@ str(vf_mat2)
 
 #data ready to use
 #made4 has an overview function which generates a boxplot, histogram and hierachial tree of the data 
-overview(res_mat_all)
+overview(res_mat2)
+overview(bac_mat2)
+overview(vf_mat2)
+
+# actually using made4
+c <- cia(bac_mat2, res_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
+c$coinertia$RV
+#0.445
+plot.cia(c)
+
+# virulence and ARGs
+c2 <- cia(vf_mat2, res_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
+c2$coinertia$RV
+#0.647
+plot.cia(c2)
+
+
+# virulence and bacteria
+
+c3 <- cia(vf_mat2, bac_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
+c3$coinertia$RV
+#0.358
+c3$coinertia
+plot.cia(c3)
+# check out what the other parameters could be used for 
+
+c4 <- cia(vf_mat, bac_mat, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
+c4$coinertia$RV
+#0.19
+
+#testing other functions
+res.coa<-ord(res_mat2)
+res.coa
+plot(res.coa)
+plotgenes(res.coa)
+topgenes(res.coa, axis=1, n=5)
+a<-topgenes(res.coa, end="neg")
+b<-topgenes(res.coa, end="pos")
+comparelists(a,b)
