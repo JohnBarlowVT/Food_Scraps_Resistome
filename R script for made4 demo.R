@@ -70,6 +70,7 @@ res_coa<-ord(res_mat2, type= "coa")
 
 summary(res_coa$ord)
 plot(res_coa)
+heatplot(res_mat2)
 
 plotgenes(res_coa, nlab=1) #if you include "nlab" you can reduce potential clutter and focus on top genes on axis
 plotarrays(res_coa, graph="groups") #"simple" gives the points, "groups" adds the labels
@@ -85,13 +86,14 @@ print.comparelists(z)
 z$intersect
 z$Set.Diff
 
-c <- cia(bac_mat2, res_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
+
+c <- cia(bac_mat2, res_mat2)
 c$coinertia$RV
 #0.445
 plot.cia(c)
 
 # virulence and ARGs
-c2 <- cia(vf_mat2, res_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
+c2 <- cia(vf_mat2, res_mat2)
 c2$coinertia$RV
 #0.647
 plot.cia(c2)
@@ -99,27 +101,15 @@ plot.cia(c2)
 
 # virulence and bacteria
 
-c3 <- cia(vf_mat2, bac_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
+c3 <- cia(vf_mat2, bac_mat2)
 c3$coinertia$RV
 #0.358
-c3$coinertia
 plot.cia(c3)
 # check out what the other parameters could be used for 
 
-c4 <- cia(vf_mat, bac_mat, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
-c4$coinertia$RV
-#0.19
+#The RV coefficient is a measure of similarity between the 2 datasest and is number between 0 and 1, with closer to 1 being more similarity betwen the structure of the data sets.
 
-#testing other functions
-res.coa<-ord(res_mat2)
-res.coa
-plot(res.coa)
-plotgenes(res.coa)
-topgenes(res.coa, axis=1, n=5)
-a<-topgenes(res_coa, axis=2, n=10, end="pos")
-b<-topgenes(res_coa, axis=3, n=10, end="pos")
-z<-comparelists(a,b)
-print.comparelists(z)
-z$intersect
-z$Set.Diff
+#On the plot, the point is the gene abundance score for a case from one data set and the arrow is the gene abundance score form the other data set. The lines join these 2 pints and repesent the amunt of divergence between gene abundance profiles for the 2 data sets. A short line = good agreement within a site
+
+
 

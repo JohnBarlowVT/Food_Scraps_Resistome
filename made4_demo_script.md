@@ -168,10 +168,49 @@ and plot the results
 ```r
 plot(res_coa)
 
-plotgenes(res_coa)
-plotarrays(res_coa)
+plotgenes(res_coa, nlab=1) #if you include "nlab" 
+plotarrays(res_coa, graph="groups") #"simple" gives the points, "groups" adds the labels
+
+#you can generate a list of the variables (genes) at the end of the axis or gradient
+topgenes(res_coa, axis=1, n=5, end="pos")
+
+# and compare lists of top genes at the ends of gradients
+a<-topgenes(res_coa, axis=2, n=10, end="pos")
+b<-topgenes(res_coa, axis=3, n=10, end="pos")
+z<-comparelists(a,b)
+print.comparelists(z)
+z$intersect
+z$Set.Diff
+
+
 #including generating in 3d
 do3d(res_coa$ord$li)
 do3d(res_coa$ord$co)
 ```
 the support documents provide package and demo code for visualizing the 3d plots dynamically (can be rotated).
+
+####Coinertia Analysis 
+
+exploring trends or co-relationships between multiple datasets
+
+```r
+#bacteria and ARGs
+c <- cia(bac_mat2, res_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
+c$coinertia$RV
+#0.445
+plot.cia(c)
+
+# virulence and ARGs
+c2 <- cia(vf_mat2, res_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
+c2$coinertia$RV
+#0.647
+plot.cia(c2)
+
+
+# virulence and bacteria
+c3 <- cia(vf_mat2, bac_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
+c3$coinertia$RV
+#0.358
+c3$coinertia
+plot.cia(c3)
+```

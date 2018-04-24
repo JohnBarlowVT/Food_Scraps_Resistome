@@ -175,3 +175,28 @@ do3d(res_coa$ord$co)
 
 ```
 the support documents provide package and demo code for visualizing the 3d plots dynamically (can be rotated).
+
+####Coinertia Analysis 
+
+exploring trends or co-relationships between multiple datasets
+```{r eval=FALSE}
+
+#bacteria and ARGs
+c <- cia(bac_mat2, res_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
+c$coinertia$RV
+#0.445
+plot.cia(c)
+
+# virulence and ARGs
+c2 <- cia(vf_mat2, res_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
+c2$coinertia$RV
+#0.647
+plot.cia(c2)
+
+
+# virulence and bacteria
+c3 <- cia(vf_mat2, bac_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
+c3$coinertia$RV
+#0.358
+c3$coinertia
+plot.cia(c3)

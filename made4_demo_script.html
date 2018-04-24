@@ -256,12 +256,48 @@ vf_mat2 &lt;-<span class="st"> </span>vf_mat_all[,<span class="op">-</span><span
 <p>and plot the results</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(res_coa)
 
-<span class="kw">plotgenes</span>(res_coa)
-<span class="kw">plotarrays</span>(res_coa)
+<span class="kw">plotgenes</span>(res_coa, <span class="dt">nlab=</span><span class="dv">1</span>) <span class="co">#if you include &quot;nlab&quot; </span>
+<span class="kw">plotarrays</span>(res_coa, <span class="dt">graph=</span><span class="st">&quot;groups&quot;</span>) <span class="co">#&quot;simple&quot; gives the points, &quot;groups&quot; adds the labels</span>
+
+<span class="co">#you can generate a list of the variables (genes) at the end of the axis or gradient</span>
+<span class="kw">topgenes</span>(res_coa, <span class="dt">axis=</span><span class="dv">1</span>, <span class="dt">n=</span><span class="dv">5</span>, <span class="dt">end=</span><span class="st">&quot;pos&quot;</span>)
+
+<span class="co"># and compare lists of top genes at the ends of gradients</span>
+a&lt;-<span class="kw">topgenes</span>(res_coa, <span class="dt">axis=</span><span class="dv">2</span>, <span class="dt">n=</span><span class="dv">10</span>, <span class="dt">end=</span><span class="st">&quot;pos&quot;</span>)
+b&lt;-<span class="kw">topgenes</span>(res_coa, <span class="dt">axis=</span><span class="dv">3</span>, <span class="dt">n=</span><span class="dv">10</span>, <span class="dt">end=</span><span class="st">&quot;pos&quot;</span>)
+z&lt;-<span class="kw">comparelists</span>(a,b)
+<span class="kw">print.comparelists</span>(z)
+z<span class="op">$</span>intersect
+z<span class="op">$</span>Set.Diff
+
+
 <span class="co">#including generating in 3d</span>
 <span class="kw">do3d</span>(res_coa<span class="op">$</span>ord<span class="op">$</span>li)
 <span class="kw">do3d</span>(res_coa<span class="op">$</span>ord<span class="op">$</span>co)</code></pre></div>
 <p>the support documents provide package and demo code for visualizing the 3d plots dynamically (can be rotated).</p>
+<div id="coinertia-analysis" class="section level4">
+<h4>Coinertia Analysis</h4>
+<p>exploring trends or co-relationships between multiple datasets</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#bacteria and ARGs</span>
+c &lt;-<span class="st"> </span><span class="kw">cia</span>(bac_mat2, res_mat2, <span class="dt">cia.nf=</span><span class="dv">2</span>, <span class="dt">cia.scan=</span><span class="ot">FALSE</span>, <span class="dt">nsc=</span><span class="ot">TRUE</span>)
+c<span class="op">$</span>coinertia<span class="op">$</span>RV
+<span class="co">#0.445</span>
+<span class="kw">plot.cia</span>(c)
+
+<span class="co"># virulence and ARGs</span>
+c2 &lt;-<span class="st"> </span><span class="kw">cia</span>(vf_mat2, res_mat2, <span class="dt">cia.nf=</span><span class="dv">2</span>, <span class="dt">cia.scan=</span><span class="ot">FALSE</span>, <span class="dt">nsc=</span><span class="ot">TRUE</span>)
+c2<span class="op">$</span>coinertia<span class="op">$</span>RV
+<span class="co">#0.647</span>
+<span class="kw">plot.cia</span>(c2)
+
+
+<span class="co"># virulence and bacteria</span>
+c3 &lt;-<span class="st"> </span><span class="kw">cia</span>(vf_mat2, bac_mat2, <span class="dt">cia.nf=</span><span class="dv">2</span>, <span class="dt">cia.scan=</span><span class="ot">FALSE</span>, <span class="dt">nsc=</span><span class="ot">TRUE</span>)
+c3<span class="op">$</span>coinertia<span class="op">$</span>RV
+<span class="co">#0.358</span>
+c3<span class="op">$</span>coinertia
+<span class="kw">plot.cia</span>(c3)</code></pre></div>
+</div>
 </div>
 
 
