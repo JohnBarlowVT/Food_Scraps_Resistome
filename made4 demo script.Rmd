@@ -3,35 +3,38 @@ title: "made4 Multivariate analysis of microarray data"
 author: "John Barlow"
 date: "April 23, 2018"
 output: 
-  rmdformats::html_clean:
-    highlight: espresso
+  html_document:
+    highlight: tango
+    theme: united
     keep_md: yes
     self_contained: no
     thumbnails: no
     #readthedown rmdformat alternative html_clean
 ---
-## REFERENCES: 
+## references: 
 
 I used the following resources to learn about using made4
+
 1. Bioconductor made4 
 
-[in line link](https://www.bioconductor.org/packages/release/bioc/html/made4.html)
-[another inline link](http://www.bioconductor.org/packages//2.7/bioc/vignettes/made4/inst/doc/introduction.pdf)
+[https://www.bioconductor.org/packages/release/bioc/html/made4.html](https://www.bioconductor.org/packages/release/bioc/html/made4.html)
+[http://www.bioconductor.org/packages//2.7/bioc/vignettes/made4/inst/doc/introduction.pdf](http://www.bioconductor.org/packages//2.7/bioc/vignettes/made4/inst/doc/introduction.pdf)
 
 2. Culhane AC, Thioulouse J, Perriere G, Higgins DG.(2005) MADE4: an R package for multivariate analysis of gene expression data. Bioinformatics 21(11):2789-90.
 note the introduction and reference manual can be opened from within R 
 
 "made4 is useful for Multivariate data analysis and graphical display of microarray data. Functions include between group analysis and coinertia analysis. It contains functions that require ade4 package."
 
-before the preliminaries
+##before the preliminaries
 
 recent versions of made4 and associated packages were built under R version 3.4.4, so like me you might need to upgrade from an older R version or else when you download made4 it will throw a warning message - I don't know if updating was absolutely necessary, but I did not chance it as my last R update was about 6 months old
 
 I found a package to make the process of upgrading R a bit easier - the installr package - it seemed to work well and included an option to upgrade packages when it ran
-preference is to run installr in the R Gui console, not from R studio
+
+you need to run installr in the R Gui console, not from R studio
 here is a link on updating R with installr
 
-[another inline link](http://bioinfo.umassmed.edu/bootstrappers/bootstrappers-courses/courses/rCourse/Additional_Resources/Updating_R.html)
+[ttp://bioinfo.umassmed.edu/bootstrappers/bootstrappers-courses/courses/rCourse/Additional_Resources/Updating_R.html](http://bioinfo.umassmed.edu/bootstrappers/bootstrappers-courses/courses/rCourse/Additional_Resources/Updating_R.html)
 
 you can install the installr package from RStudio
 ```{r}

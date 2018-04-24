@@ -4,9 +4,10 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+
 
 <meta name="author" content="John Barlow" />
 
@@ -16,15 +17,11 @@
 
 <script src="made4_demo_script_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="made4_demo_script_files/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" />
-<script src="made4_demo_script_files/bootstrap-3.3.6/js/bootstrap.min.js"></script>
-<script src="made4_demo_script_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="made4_demo_script_files/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="made4_demo_script_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="made4_demo_script_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="made4_demo_script_files/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="made4_demo_script_files/navigation-1.1/tabsets.js"></script>
-<script src="made4_demo_script_files/navigation-1.1/codefolding.js"></script>
-<link href="made4_demo_script_files/magnific-popup-1.1.0/magnific-popup.css" rel="stylesheet" />
-<script src="made4_demo_script_files/magnific-popup-1.1.0/jquery.magnific-popup.min.js"></script>
-<link href="made4_demo_script_files/clean-0.1/clean.css" rel="stylesheet" />
-<script src="made4_demo_script_files/clean-0.1/clean.js"></script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -32,38 +29,38 @@
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #2a211c; color: #bdae9d; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #2a211c; color: #bdae9d; border-right: 1px solid #bdae9d; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
-pre, code { color: #bdae9d; background-color: #2a211c; }
-code > span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
-code > span.dt { text-decoration: underline; } /* DataType */
-code > span.dv { color: #44aa43; } /* DecVal */
-code > span.bn { color: #44aa43; } /* BaseN */
-code > span.fl { color: #44aa43; } /* Float */
-code > span.ch { color: #049b0a; } /* Char */
-code > span.st { color: #049b0a; } /* String */
-code > span.co { color: #0066ff; font-style: italic; } /* Comment */
-code > span.al { color: #ffff00; } /* Alert */
-code > span.fu { color: #ff9358; font-weight: bold; } /* Function */
-code > span.er { color: #ffff00; font-weight: bold; } /* Error */
-code > span.wa { color: #ffff00; font-weight: bold; } /* Warning */
-code > span.cn { } /* Constant */
-code > span.sc { color: #049b0a; } /* SpecialChar */
-code > span.vs { color: #049b0a; } /* VerbatimString */
-code > span.ss { color: #049b0a; } /* SpecialString */
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
 code > span.im { } /* Import */
-code > span.va { } /* Variable */
-code > span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
-code > span.op { } /* Operator */
-code > span.bu { } /* BuiltIn */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
 code > span.ex { } /* Extension */
-code > span.pp { font-weight: bold; } /* Preprocessor */
-code > span.at { } /* Attribute */
-code > span.do { color: #0066ff; font-style: italic; } /* Documentation */
-code > span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
-code > span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -72,15 +69,33 @@ code > span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Inf
 </style>
 
 
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
-<!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
-
-<!-- code folding -->
 
 </head>
 
@@ -100,33 +115,61 @@ img {
   max-width:100%;
   height: auto;
 }
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
 </style>
+
+
+
 <div class="container-fluid main-container">
-  <div class="row">
-     <div class="col-md-10">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
 
 
 
 
-<div id="header">
-<h1 class="title">made4 Multivariate analysis of microarray data</h1>
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">made4 Multivariate analysis of microarray data</h1>
 <h4 class="author"><em>John Barlow</em></h4>
 <h4 class="date"><em>April 23, 2018</em></h4>
+
 </div>
 
-<div id="content">
+
 <div id="references" class="section level2">
-<h2>REFERENCES:</h2>
-<p>I used the following resources to learn about using made4 1. Bioconductor made4</p>
-<p><a href="https://www.bioconductor.org/packages/release/bioc/html/made4.html">in line link</a> <a href="http://www.bioconductor.org/packages//2.7/bioc/vignettes/made4/inst/doc/introduction.pdf">another inline link</a></p>
+<h2>references:</h2>
+<p>I used the following resources to learn about using made4</p>
+<ol style="list-style-type: decimal">
+<li>Bioconductor made4</li>
+</ol>
+<p><a href="https://www.bioconductor.org/packages/release/bioc/html/made4.html" class="uri">https://www.bioconductor.org/packages/release/bioc/html/made4.html</a> <a href="http://www.bioconductor.org/packages//2.7/bioc/vignettes/made4/inst/doc/introduction.pdf" class="uri">http://www.bioconductor.org/packages//2.7/bioc/vignettes/made4/inst/doc/introduction.pdf</a></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Culhane AC, Thioulouse J, Perriere G, Higgins DG.(2005) MADE4: an R package for multivariate analysis of gene expression data. Bioinformatics 21(11):2789-90. note the introduction and reference manual can be opened from within R</li>
 </ol>
 <p>“made4 is useful for Multivariate data analysis and graphical display of microarray data. Functions include between group analysis and coinertia analysis. It contains functions that require ade4 package.”</p>
-<p>before the preliminaries</p>
+</div>
+<div id="before-the-preliminaries" class="section level2">
+<h2>before the preliminaries</h2>
 <p>recent versions of made4 and associated packages were built under R version 3.4.4, so like me you might need to upgrade from an older R version or else when you download made4 it will throw a warning message - I don’t know if updating was absolutely necessary, but I did not chance it as my last R update was about 6 months old</p>
-<p>I found a package to make the process of upgrading R a bit easier - the installr package - it seemed to work well and included an option to upgrade packages when it ran preference is to run installr in the R Gui console, not from R studio here is a link on updating R with installr</p>
-<p><a href="http://bioinfo.umassmed.edu/bootstrappers/bootstrappers-courses/courses/rCourse/Additional_Resources/Updating_R.html">another inline link</a></p>
+<p>I found a package to make the process of upgrading R a bit easier - the installr package - it seemed to work well and included an option to upgrade packages when it ran</p>
+<p>you need to run installr in the R Gui console, not from R studio here is a link on updating R with installr</p>
+<p><a href="http://bioinfo.umassmed.edu/bootstrappers/bootstrappers-courses/courses/rCourse/Additional_Resources/Updating_R.html">ttp://bioinfo.umassmed.edu/bootstrappers/bootstrappers-courses/courses/rCourse/Additional_Resources/Updating_R.html</a></p>
 <p>you can install the installr package from RStudio</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;installr&quot;)</span></code></pre></div>
 <p>then close RStudio and open RGui in RGui open the installr library and run updateR</p>
@@ -140,56 +183,31 @@ img {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;made4&quot;)</span></code></pre></div>
 <p>Korin suggests one needs to install made4 as below from the biocLite not via install packages, but install packages seemed to work for me (although it loaded an older version and to get the most recent version I had to download direct from the made4 bioconductor site</p>
 </div>
-</div>
 
 
-    </div>
-    <div class="col-md-2">
-      <div id="toc">
-      	<button type="button" class="close">×</button>
-        <ul>
-        <li><a href="#references">REFERENCES:</a></li>
-        <li><a href="#the-preliminaries">the preliminaries</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+
+
 </div>
 
 <script>
-$(document).ready(function () {
 
-  // add bootstrap table styles to pandoc tables
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-
-});
-</script>
-
-<script>
+}
 $(document).ready(function () {
- 	    $('#content img')
- 	  .addClass("image-lb");
-  $('#content').magnificPopup({
-	      type:'image',
-	      closeOnContentClick: false,
-	      delegate: 'img',
-	      gallery: {enabled: false },
-	      image: {
-	        verticalFit: true,
-          titleSrc: 'alt'
-	      }
- 	    });
- 	});
+  bootstrapStylePandocTables();
+});
+
+
 </script>
-
-
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
