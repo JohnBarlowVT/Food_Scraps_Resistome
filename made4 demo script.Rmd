@@ -154,8 +154,21 @@ and plot the results
 ```{r eval=FALSE}
 plot(res_coa)
 
-plotgenes(res_coa)
-plotarrays(res_coa)
+plotgenes(res_coa, nlab=1) #if you include "nlab" 
+plotarrays(res_coa, graph="groups") #"simple" gives the points, "groups" adds the labels
+
+#you can generate a list of the variables (genes) at the end of the axis or gradient
+topgenes(res_coa, axis=1, n=5, end="pos")
+
+# and compare lists of top genes at the ends of gradients
+a<-topgenes(res_coa, axis=2, n=10, end="pos")
+b<-topgenes(res_coa, axis=3, n=10, end="pos")
+z<-comparelists(a,b)
+print.comparelists(z)
+z$intersect
+z$Set.Diff
+
+
 #including generating in 3d
 do3d(res_coa$ord$li)
 do3d(res_coa$ord$co)

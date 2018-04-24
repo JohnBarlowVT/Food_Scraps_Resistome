@@ -71,10 +71,19 @@ res_coa<-ord(res_mat2, type= "coa")
 summary(res_coa$ord)
 plot(res_coa)
 
-plotgenes(res_coa)
-plotarrays(res_coa)
+plotgenes(res_coa, nlab=1) #if you include "nlab" you can reduce potential clutter and focus on top genes on axis
+plotarrays(res_coa, graph="groups") #"simple" gives the points, "groups" adds the labels
 do3d(res_coa$ord$li)
 do3d(res_coa$ord$co)
+
+#you can generate a list of the variables (genes) at the end of the axis or gradient
+topgenes(res_coa, axis=2, n=5, end="pos")
+a<-topgenes(res_coa, axis=2, n=10, end="pos")
+b<-topgenes(res_coa, axis=3, n=10, end="pos")
+z<-comparelists(a,b)
+print.comparelists(z)
+z$intersect
+z$Set.Diff
 
 c <- cia(bac_mat2, res_mat2, cia.nf=2, cia.scan=FALSE, nsc=TRUE)
 c$coinertia$RV
@@ -107,8 +116,10 @@ res.coa
 plot(res.coa)
 plotgenes(res.coa)
 topgenes(res.coa, axis=1, n=5)
-a<-topgenes(res.coa, end="neg")
-b<-topgenes(res.coa, end="pos")
-comparelists(a,b)
+a<-topgenes(res_coa, axis=2, n=10, end="pos")
+b<-topgenes(res_coa, axis=3, n=10, end="pos")
+z<-comparelists(a,b)
+print.comparelists(z)
+z$intersect
+z$Set.Diff
 
-browseVignettes("made4")
