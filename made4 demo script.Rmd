@@ -25,7 +25,8 @@ I used the following resources to learn about using made4
 note the introduction and reference manual can be opened from within R 
 
 "made4 is useful for Multivariate data analysis and graphical display of microarray data. Functions include between group analysis and coinertia analysis. It contains functions that require ade4 package."
-We were particularly interested in the coinertia function.
+
+Korin found this package because we are particularly interested in the coinertia analysis function to explore potential trends between gene abundancy data sets.
 
 ##before the preliminaries
 
