@@ -143,9 +143,35 @@ str(vf_mat2)
 
 ## _made4_ functions
 
+
+made4 is well documented - to view documentation
+
+```r
+browseVignettes("made4")
+```
+the package also contains a data set of gene expression data 
+
 made4 has an overview function which generates a boxplot, histogram and hierachial tree of the data 
 
 ```r
 overview(res_mat2)
 ```
+the ord function makes it east to run ordination methods to explore structure of a data matrix - the methods include correspondence (coa, the default), non-symmetric correspondence analysis (nsc) or principal component (pca).
 
+```r
+res_coa<-ord(res_mat2, type= "coa")
+
+summary(res_coa$ord)
+```
+and plot the results
+
+```r
+plot(res_coa)
+
+plotgenes(res_coa)
+plotarrays(res_coa)
+#including generating in 3d
+do3d(res_coa$ord$li)
+do3d(res_coa$ord$co)
+```
+the support documents provide package and demo code for visualizing the 3d plots dynamically (can be rotated).

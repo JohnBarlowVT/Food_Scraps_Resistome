@@ -244,8 +244,24 @@ vf_mat2 &lt;-<span class="st"> </span>vf_mat_all[,<span class="op">-</span><span
 </div>
 <div id="made4-functions" class="section level2">
 <h2><em>made4</em> functions</h2>
+<p>made4 is well documented - to view documentation</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">browseVignettes</span>(<span class="st">&quot;made4&quot;</span>)</code></pre></div>
+<p>the package also contains a data set of gene expression data</p>
 <p>made4 has an overview function which generates a boxplot, histogram and hierachial tree of the data</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">overview</span>(res_mat2)</code></pre></div>
+<p>the ord function makes it east to run ordination methods to explore structure of a data matrix - the methods include correspondence (coa, the default), non-symmetric correspondence analysis (nsc) or principal component (pca).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res_coa&lt;-<span class="kw">ord</span>(res_mat2, <span class="dt">type=</span> <span class="st">&quot;coa&quot;</span>)
+
+<span class="kw">summary</span>(res_coa<span class="op">$</span>ord)</code></pre></div>
+<p>and plot the results</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(res_coa)
+
+<span class="kw">plotgenes</span>(res_coa)
+<span class="kw">plotarrays</span>(res_coa)
+<span class="co">#including generating in 3d</span>
+<span class="kw">do3d</span>(res_coa<span class="op">$</span>ord<span class="op">$</span>li)
+<span class="kw">do3d</span>(res_coa<span class="op">$</span>ord<span class="op">$</span>co)</code></pre></div>
+<p>the support documents provide package and demo code for visualizing the 3d plots dynamically (can be rotated).</p>
 </div>
 
 
