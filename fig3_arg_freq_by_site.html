@@ -13,7 +13,7 @@
 
 <meta name="date" content="2018-04-24" />
 
-<title>figure 3 arg freq by site</title>
+<title>Figure 3: ARG freq by site</title>
 
 <script src="fig3_arg_freq_by_site_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -145,7 +145,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">figure 3 arg freq by site</h1>
+<h1 class="title toc-ignore">Figure 3: ARG freq by site</h1>
 <h4 class="author"><em>JWB</em></h4>
 <h4 class="date"><em>April 24, 2018</em></h4>
 
@@ -156,11 +156,25 @@ $(document).ready(function () {
 <img src="AGRhisto.jpg" alt="Figure 3: ARG frequency by Site - created using ggplot2 after structuring the data using the gather function of tidyr" />
 <p class="caption">Figure 3: ARG frequency by Site - created using ggplot2 after structuring the data using the gather function of tidyr</p>
 </div>
+<p>visually demonstrates that some sites had no gene sequences identified above threshold counts (HOSP, SWCA, WOCA)</p>
 <p>code for creating</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">.&lt;-<span class="kw">gather</span>(res_mat_all, <span class="dt">key=</span><span class="st">&quot;Site&quot;</span>, <span class="dt">value=</span><span class="st">&quot;Abundance&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span> (reshape2)
+<span class="kw">library</span>(tidyr)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span> (ggplot2)
+<span class="kw">library</span> (ggthemes)
+<span class="kw">library</span> (patchwork)
+<span class="kw">library</span>(readr)
+
+res_mat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;res_mat_abun.csv&quot;</span>)
+res_mat_all &lt;-<span class="st"> </span>res_mat[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>)]
+res_mat_all[] &lt;-<span class="st"> </span><span class="kw">lapply</span>(res_mat_all[], as.numeric)
+<span class="kw">rownames</span>(res_mat_all) &lt;-<span class="st"> </span>res_mat<span class="op">$</span>Name
+
+.&lt;-<span class="kw">gather</span>(res_mat_all, <span class="dt">key=</span><span class="st">&quot;Site&quot;</span>, <span class="dt">value=</span><span class="st">&quot;Abundance&quot;</span>)
 <span class="kw">head</span>(.)
 <span class="kw">str</span>(.)
-<span class="co"># note this did not generate a column with the gene names - need to append this code perhaps eventually, but really not important to see the distribution on the frequency of gene counts</span>
+<span class="co"># note this did not generate a column with the gene names - need to append this code perhaps eventually, but this is really not important to see the distribution on the frequency of gene counts by site</span>
 <span class="co"># histogram on gene frequency by sites in lattice </span>
 
 g1&lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data=</span>., <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>Abundance,<span class="dt">fill=</span><span class="kw">I</span>(<span class="st">&quot;tomato&quot;</span>), <span class="dt">color=</span><span class="kw">I</span>(<span class="st">&quot;black&quot;</span>))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>()<span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>()
