@@ -97,7 +97,7 @@ rownames(res_mat_all) <- res_mat$Name
 head(res_mat_all)
 str(res_mat_all)
 ```
-also, a number of functions throw an error if any sites have all 0 values for the abundance of observed genes e.g. the HOSP, WOCA, and SWCA for ARGs all have zero abundance for ARGs (see [figure 3](index.html)).
+also, a number of functions throw an error if any sites have all 0 values for the abundance of observed genes e.g. the HOSP, WOCA, and SWCA for ARGs all have zero abundance for ARGs (see [Figure 3 ARG freq by site.html](fig3_arg_freq_by_site.html)).
 
 here is the code Korin figured out to resolve this issue
 
@@ -124,8 +124,8 @@ vf_mat_all <- vf_mat[,-c(1)]
 vf_mat_all[] <- lapply(vf_mat_all[], as.numeric)
 rownames(vf_mat_all) <- vf_mat$Name
 vf_mat2 <- vf_mat_all[,-c(4,10,11,15,21,24)]
-head(vf_mat_all)
-str(vf_mat_all)
+head(vf_mat2)
+str(vf_mat2)
 ```
 data files now ready to use
 
