@@ -162,7 +162,7 @@ $(document).ready(function () {
 <ol start="2" style="list-style-type: decimal">
 <li>Culhane AC, Thioulouse J, Perriere G, Higgins DG.(2005) MADE4: an R package for multivariate analysis of gene expression data. Bioinformatics 21(11):2789-90. note the introduction and reference manual can be opened from within R</li>
 </ol>
-<p>“made4 is useful for Multivariate data analysis and graphical display of microarray data. Functions include between group analysis and coinertia analysis. It contains functions that require ade4 package.”</p>
+<p>“made4 is useful for Multivariate data analysis and graphical display of microarray data. Functions include between group analysis and coinertia analysis. It contains functions that require ade4 package.” We were particularly interested in the coinertia function.</p>
 </div>
 <div id="before-the-preliminaries" class="section level2">
 <h2>before the preliminaries</h2>
@@ -171,17 +171,63 @@ $(document).ready(function () {
 <p>you need to run installr in the R Gui console, not from R studio here is a link on updating R with installr</p>
 <p><a href="http://bioinfo.umassmed.edu/bootstrappers/bootstrappers-courses/courses/rCourse/Additional_Resources/Updating_R.html">ttp://bioinfo.umassmed.edu/bootstrappers/bootstrappers-courses/courses/rCourse/Additional_Resources/Updating_R.html</a></p>
 <p>you can install the installr package from RStudio</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;installr&quot;)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;installr&quot;</span>)</code></pre></div>
 <p>then close RStudio and open RGui in RGui open the installr library and run updateR</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(installr)</span>
-<span class="co">#updateR()</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(installr)
+<span class="kw">updateR</span>()</code></pre></div>
 </div>
 <div id="the-preliminaries" class="section level2">
 <h2>the preliminaries</h2>
 <p>download made4 package - made4 package uses ade4 package, scatterplot3d package, RColorBrewer and gplots</p>
 <p>once your R version is up to date, then on to the preliiminaries of installing made4 and associated packages - ade4 and scatterplot3d appear to install automatically when you install made4</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;made4&quot;)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;made4&quot;</span>)</code></pre></div>
 <p>Korin suggests one needs to install made4 as below from the biocLite not via install packages, but install packages seemed to work for me (although it loaded an older version and to get the most recent version I had to download direct from the made4 bioconductor site</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;https://bioconductor.org/biocLite.R&quot;</span>)
+<span class="kw">biocLite</span>(<span class="st">&quot;made4&quot;</span>)
+<span class="kw">biocLite</span>(<span class="st">&quot;BiocUpgrade&quot;</span>)</code></pre></div>
+<p>confirm that the 3 downloaded files are in your current working directory</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()
+<span class="co">#move files into current wd or if needed set wd</span>
+<span class="kw">setwd</span>(<span class="st">&quot;insert address for your particular wd&quot;</span>)</code></pre></div>
+<p>load made4 - associated packages ade4, RColorBrewer, gplots, and scatterplot3d load automatically when you load made4</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(made4)</code></pre></div>
+<p>read in the 3 data files</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res_mat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;res_mat_abun.csv&quot;</span>)
+bac_mat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;bac_mat_abun.csv&quot;</span>)
+vf_mat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;vf_mat_abun.csv&quot;</span>)</code></pre></div>
+<p>check the structure of the data files - made4 needs the abundance values to be numeric, and for some reason a number of values are as integers in our csv files - so code we figured out to correct this</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(res_mat)
+<span class="co">#so clean thus up by setting all values to numeric, except not the gene names</span>
+res_mat_all &lt;-<span class="st"> </span>res_mat[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>)]
+res_mat_all[] &lt;-<span class="st"> </span><span class="kw">lapply</span>(res_mat_all[], as.numeric)
+<span class="kw">rownames</span>(res_mat_all) &lt;-<span class="st"> </span>res_mat<span class="op">$</span>Name
+<span class="kw">head</span>(res_mat_all)
+<span class="kw">str</span>(res_mat_all)</code></pre></div>
+<p>also, a number of functions throw an error if any sites have all 0 values for the abundance of observed genes e.g. the HOSP, WOCA, and SWCA for ARGs all have zero abundance for ARGs (see <a href="index.html">figure 3</a>).</p>
+<p>here is the code Korin figured out to resolve this issue</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">none &lt;-<span class="st"> </span><span class="kw">lapply</span>(res_mat_all, <span class="cf">function</span>(x) <span class="kw">all</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">0</span>))
+<span class="kw">which</span>(none <span class="op">==</span><span class="st"> &quot;TRUE&quot;</span>)
+<span class="co"># remove those 6 columns</span>
+res_mat2 &lt;-<span class="st"> </span>res_mat_all[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">15</span>,<span class="dv">21</span>,<span class="dv">24</span>)]
+<span class="kw">head</span>(res_mat_all)
+<span class="kw">str</span>(res_mat_all)</code></pre></div>
+<p>repeat for the other 2 files</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bac_mat_all &lt;-<span class="st"> </span>bac_mat[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>)]
+bac_mat_all[] &lt;-<span class="st"> </span><span class="kw">lapply</span>(bac_mat_all[], as.numeric)
+<span class="kw">rownames</span>(bac_mat_all) &lt;-<span class="st"> </span>bac_mat<span class="op">$</span>Name
+bac_mat2 &lt;-<span class="st"> </span>bac_mat_all[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">15</span>,<span class="dv">21</span>,<span class="dv">24</span>)]
+<span class="kw">head</span>(bac_mat2)
+<span class="kw">str</span>(bac_mat2)
+
+vf_mat_all &lt;-<span class="st"> </span>vf_mat[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>)]
+vf_mat_all[] &lt;-<span class="st"> </span><span class="kw">lapply</span>(vf_mat_all[], as.numeric)
+<span class="kw">rownames</span>(vf_mat_all) &lt;-<span class="st"> </span>vf_mat<span class="op">$</span>Name
+vf_mat2 &lt;-<span class="st"> </span>vf_mat_all[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">15</span>,<span class="dv">21</span>,<span class="dv">24</span>)]
+<span class="kw">head</span>(vf_mat_all)
+<span class="kw">str</span>(vf_mat_all)</code></pre></div>
+<p>data files now ready to use</p>
+<p>made4 has an overview function which generates a boxplot, histogram and hierachial tree of the data</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">overview</span>(res_mat2)</code></pre></div>
 </div>
 
 
