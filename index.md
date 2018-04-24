@@ -34,7 +34,7 @@ A challenge with these data is that there are large numbers of genes (i.e. varia
 
 The data from the shotgun metagenomics study are 3 separate dataframes, each with 20 identical columns representing the collection sites and a variable number of rows representing the observed genes. The elements in the data are relative abundance measures in gene counts from the metagenomic sequencing runs. At this time we are treating the replicates of metagenomic runs from each site separately (although we know they are not independent), thus there are 26 sites (13 sites with 2 metagenomic runs per site). There were 3 sites where we found no ARGs and these are later removed for co-inertia analysis between the data.frames. 
 
-![ARG histo by Site - created using gather function of tidyr](AGRhisto.jpg)
+![Figure 3: ARG frequency by Site - created using ggplot2 after structuring the data using the gather function of tidyr](AGRhisto.jpg)
 
  
 ##Data Files
