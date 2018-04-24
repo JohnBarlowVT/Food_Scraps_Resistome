@@ -96,20 +96,21 @@ plot.cia(c)
 c2 <- cia(vf_mat2, res_mat2)
 c2$coinertia$RV
 #0.647
-plot.cia(c2)
-
+plot.cia(c2, nlab=0) 
+c3$coinertia
 
 # virulence and bacteria
 
 c3 <- cia(vf_mat2, bac_mat2)
 c3$coinertia$RV
+
 #0.358
 plot.cia(c3)
 # check out what the other parameters could be used for 
 
 #The RV coefficient is a measure of similarity between the 2 datasest and is number between 0 and 1, with closer to 1 being more similarity betwen the structure of the data sets.
 
-#On the plot, the point is the gene abundance score for a case from one data set and the arrow is the gene abundance score form the other data set. The lines join these 2 pints and repesent the amunt of divergence between gene abundance profiles for the 2 data sets. A short line = good agreement within a site
+#On the plot, the point is the gene abundance score for a case from one data set and the arrow is the gene abundance score form the other data set. The lines join these 2 pints and repesent the amunt of divergence between gene abundance profiles for the 2 data sets. A short line = good agreement within a site when comparing the structure of the abundance data from the 2 data sets.
 
 
 

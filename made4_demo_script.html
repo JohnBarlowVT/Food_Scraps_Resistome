@@ -279,24 +279,25 @@ z<span class="op">$</span>Set.Diff
 <h4>Coinertia Analysis</h4>
 <p>exploring trends or co-relationships between multiple datasets</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#bacteria and ARGs</span>
-c &lt;-<span class="st"> </span><span class="kw">cia</span>(bac_mat2, res_mat2, <span class="dt">cia.nf=</span><span class="dv">2</span>, <span class="dt">cia.scan=</span><span class="ot">FALSE</span>, <span class="dt">nsc=</span><span class="ot">TRUE</span>)
+c &lt;-<span class="st"> </span><span class="kw">cia</span>(bac_mat2, res_mat2)
 c<span class="op">$</span>coinertia<span class="op">$</span>RV
 <span class="co">#0.445</span>
 <span class="kw">plot.cia</span>(c)
 
 <span class="co"># virulence and ARGs</span>
-c2 &lt;-<span class="st"> </span><span class="kw">cia</span>(vf_mat2, res_mat2, <span class="dt">cia.nf=</span><span class="dv">2</span>, <span class="dt">cia.scan=</span><span class="ot">FALSE</span>, <span class="dt">nsc=</span><span class="ot">TRUE</span>)
+c2 &lt;-<span class="st"> </span><span class="kw">cia</span>(vf_mat2, res_mat2)
 c2<span class="op">$</span>coinertia<span class="op">$</span>RV
 <span class="co">#0.647</span>
 <span class="kw">plot.cia</span>(c2)
 
 
 <span class="co"># virulence and bacteria</span>
-c3 &lt;-<span class="st"> </span><span class="kw">cia</span>(vf_mat2, bac_mat2, <span class="dt">cia.nf=</span><span class="dv">2</span>, <span class="dt">cia.scan=</span><span class="ot">FALSE</span>, <span class="dt">nsc=</span><span class="ot">TRUE</span>)
+c3 &lt;-<span class="st"> </span><span class="kw">cia</span>(vf_mat2, bac_mat2)
 c3<span class="op">$</span>coinertia<span class="op">$</span>RV
 <span class="co">#0.358</span>
-c3<span class="op">$</span>coinertia
 <span class="kw">plot.cia</span>(c3)</code></pre></div>
+<p>The RV coefficient is a measure of similarity between the 2 datasest and is number between 0 and 1, with closer to 1 being more similarity betwen the structure of the data sets.</p>
+<p>On the plot, the point is the gene abundance score for a case from one data set and the arrow is the gene abundance score form the other data set. The lines join these 2 pints and repesent the amunt of divergence between gene abundance profiles for the 2 data sets. A short line = good agreement within a site when comparing the structure of the abundance data from the 2 data sets.</p>
 </div>
 </div>
 
