@@ -4,6 +4,7 @@
 
 install.packages("made4")
 
+
 source("https://bioconductor.org/biocLite.R")
 biocLite("made4")
 biocLite("BiocUpgrade")                                                                
@@ -72,7 +73,7 @@ summary(res_coa$ord)
 plot(res_coa)
 heatplot(res_mat2)
 
-plotgenes(res_coa, nlab=1) #if you include "nlab" you can reduce potential clutter and focus on top genes on axis
+plotgenes(res_coa, nlab=3) #if you include "nlab" you can reduce potential clutter and focus on top genes on axis
 plotarrays(res_coa, graph="groups") #"simple" gives the points, "groups" adds the labels
 do3d(res_coa$ord$li)
 do3d(res_coa$ord$co)
